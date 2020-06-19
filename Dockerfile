@@ -3,10 +3,10 @@ LABEL website="Secure Docker Images https://secureimages.dev"
 LABEL description="We secure your business from scratch."
 LABEL maintainer="hireus@secureimages.dev"
 
-ARG LOGSTASH_VERSION=7.7.1
+ARG LOGSTASH_VERSION=7.8.0
 ARG TARBALL_ASC="https://artifacts.elastic.co/downloads/logstash/logstash-oss-${LOGSTASH_VERSION}.tar.gz.asc"
-### https://artifacts.elastic.co/downloads/logstash/logstash-oss-7.7.1.tar.gz.sha512
-ARG TARBALL_SHA="890efa23624c5c3eab7225c37f05c88bf60406d363221dd274d37f75143d97d0c4a501d702ed5ed3e84bce9c9269865ffd555f757341a762218ad2ba5a76f4b0"
+### https://artifacts.elastic.co/downloads/logstash/logstash-oss-7.8.0.tar.gz.sha512
+ARG TARBALL_SHA="4413ed97527eb89da3462cc401b84f4770bfb9e3e3083fb314b8ac813165655752a204f091512de3507527bf8cbea5934f67ada446448802424dd441da2d475e"
 ARG GPG_KEY="46095ACC8548582C1A2699A9D27D666CD88E42B4"
 
 ENV PATH=/usr/share/logstash/bin:/sbin:$PATH \
