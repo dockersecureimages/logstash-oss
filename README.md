@@ -2,77 +2,78 @@
 
 Logstash OSS, image is based on the Alpine base image with 0 vulnerabilities.
 
-## Current Docker image (~377MB)
+## Current Docker image (~738MB)
 
 Security scanning using Clair
 ```
-clair-scanner secureimages/logstash-oss:7.9.1-alpine-3.12.0
-2020/09/04 15:39:56 [INFO] ▶ Start clair-scanner
-2020/09/04 15:40:00 [INFO] ▶ Server listening on port 9279
-2020/09/04 15:40:00 [INFO] ▶ Analyzing 31609b718dd2bed92b93b1ab00c0ff67419a3121d0144bef0dc6ca49718820a7
-2020/09/04 15:40:00 [INFO] ▶ Analyzing 65f510254d57ca114a5ce00b69d04c82392956b0ce27aef8429cacdd078acdd4
-2020/09/04 15:40:00 [INFO] ▶ Analyzing cc144b0fd24dc59ba6050517ca2dcd2a6b9034047e64cbf050821513c83d397a
-2020/09/04 15:40:00 [INFO] ▶ Analyzing b2f2dcfb5f0d93e41e507178661e2a6c5de2d3666e5767a982c3728303b099a0
-2020/09/04 15:40:00 [INFO] ▶ Image [secureimages/logstash-oss:7.9.1-alpine-3.12.0] contains NO unapproved vulnerabilities
+clair-scanner secureimages/logstash-oss:7.11.1-alpine-3.13.2
+2021/02/20 12:01:25 [INFO] ▶ Start clair-scanner
+2021/02/20 12:01:33 [INFO] ▶ Server listening on port 9279
+2021/02/20 12:01:33 [INFO] ▶ Analyzing b73bac2fe5a7b9d1abcbf0138798281e20b11e59b4605b104d38e914fa35b4d2
+2021/02/20 12:01:33 [INFO] ▶ Analyzing 029d9e2ab32459dcaba4a9c2664ad5a24ce502ef1760af99fe8c88ed305219f1
+2021/02/20 12:01:33 [INFO] ▶ Analyzing 637ecb56b4b7a801f9bfa40f9d2db2b0618db7310aa60168c9f3b7d08c158eee
+2021/02/20 12:01:33 [INFO] ▶ Analyzing 65173411a04afe6d442057b7820b5de4f7489a1ab7374f846c86bd3a0b51a97e
+2021/02/20 12:01:33 [WARN] ▶ Image [secureimages/logstash-oss:7.11.1-alpine-3.13.2] contains 1 total vulnerabilities
+2021/02/20 12:01:33 [ERRO] ▶ Image [secureimages/logstash-oss:7.11.1-alpine-3.13.2] contains 1 unapproved vulnerabilities
 ```
 
 Security scanning using Trivy
 ```
-docker run --rm -v /var/run/docker.sock:/var/run/docker.sock:ro aquasec/trivy:0.11.0 --no-progress secureimages/logstash-oss:7.9.1-alpine-3.12.0
-2020-09-04T15:40:05.350Z        INFO    Need to update DB
-2020-09-04T15:40:05.350Z        INFO    Downloading DB...
-2020-09-04T15:40:15.181Z        INFO    Detecting Alpine vulnerabilities...
-2020-09-04T15:40:15.183Z        INFO    Detecting ruby vulnerabilities...
+docker run --rm -v /var/run/docker.sock:/var/run/docker.sock:ro aquasec/trivy:0.16.0 --no-progress secureimages/logstash-oss:7.11.1-alpine-3.13.2
+2021-02-20T12:01:34.927Z        INFO    Need to update DB
+2021-02-20T12:01:34.927Z        INFO    Downloading DB...
+2021-02-20T12:01:51.053Z        INFO    Detecting Alpine vulnerabilities...
+2021-02-20T12:01:51.056Z        INFO    Detecting  vulnerabilities...
 
-secureimages/logstash-oss:7.9.1-alpine-3.12.0 (alpine 3.12.0)
-=============================================================
+secureimages/logstash-oss:7.11.1-alpine-3.13.2 (alpine 3.13.2)
+==============================================================
 Total: 0 (UNKNOWN: 0, LOW: 0, MEDIUM: 0, HIGH: 0, CRITICAL: 0)
 
 usr/share/logstash/Gemfile.lock
 ===============================
-Total: 2 (UNKNOWN: 0, LOW: 0, MEDIUM: 1, HIGH: 1, CRITICAL: 0)
+Total: 3 (UNKNOWN: 0, LOW: 1, MEDIUM: 0, HIGH: 1, CRITICAL: 1)
 ```
 
-## Official Docker image (~733MB)
+## Official Docker image (~962MB)
 
 [https://www.docker.elastic.co/](https://www.docker.elastic.co/)
 ```
-docker pull docker.elastic.co/logstash/logstash-oss:7.9.1
+docker pull docker.elastic.co/logstash/logstash-oss:7.11.1
 ```
 
 Security scanning using Clair
 ```
-clair-scanner docker.elastic.co/logstash/logstash-oss:7.9.1
-2020/09/04 15:40:22 [INFO] ▶ Start clair-scanner
-2020/09/04 15:40:33 [INFO] ▶ Server listening on port 9279
-2020/09/04 15:40:33 [INFO] ▶ Analyzing 33b5e87a65b65985a0445827bd27436b3467bb578d1b1cc2aa0b6000685fb4bf
-2020/09/04 15:40:37 [INFO] ▶ Analyzing de3dfe44919bf26b740167eac62e7aa35502db8f59a3ad01fc8fdef830037b5b
-2020/09/04 15:40:38 [INFO] ▶ Analyzing 326dacc5f399340525fa2ae2b76ce4c535e3a3facb7e41819ba5c24171a142df
-2020/09/04 15:40:38 [INFO] ▶ Analyzing 07c98e4a1f16eb60fa12e0913f00bbbfe222b1b82fd4300c23eb3a5ef7c8b1a7
-2020/09/04 15:40:38 [INFO] ▶ Analyzing a4f8e5070134e314753ef7fffe54a139818f8e75439e0f362c1fee6f3769ae02
-2020/09/04 15:40:38 [INFO] ▶ Analyzing c71c95b24794f1c629180dde7619d1b1a3d480d36530aa1acb5fbc9d6dc016ce
-2020/09/04 15:40:38 [INFO] ▶ Analyzing 8a66c879fcda0d1d32cb46f3d297ffd314ddd58f1a3a02f1805a81920a53e70d
-2020/09/04 15:40:38 [INFO] ▶ Analyzing 40c363ec470d0eb5fb05fc69cad7a7755811a0ec6cc967598c696154bbfc033a
-2020/09/04 15:40:38 [INFO] ▶ Analyzing ef7b4e1525fc4845697dd9813ae68bc58d1743888a291cc29e300be19c80d3da
-2020/09/04 15:40:38 [INFO] ▶ Analyzing 219bb2d132f36f716c7326d6a22e0860a37a85cea1528f264f81835ce2fddf5a
-2020/09/04 15:40:38 [INFO] ▶ Analyzing 0663084b9b4d2617ee0e845259c4aa07a1aef99c4ba76356cd40c00a3fbba7fd
-2020/09/04 15:40:38 [INFO] ▶ Analyzing 407f391b2a31e45135fbdb8936fedf812c17b3e43cad3fbc98518f30d11a132b
-2020/09/04 15:40:38 [INFO] ▶ Image [docker.elastic.co/logstash/logstash-oss:7.9.1] contains NO unapproved vulnerabilities
+clair-scanner docker.elastic.co/logstash/logstash-oss:7.11.1
+2021/02/20 12:01:56 [INFO] ▶ Start clair-scanner
+2021/02/20 12:02:11 [INFO] ▶ Server listening on port 9279
+2021/02/20 12:02:11 [INFO] ▶ Analyzing 291eb894538de0baee3beecbbb57ef8668b00974b05062ff0d78c0dc110820ac
+2021/02/20 12:02:14 [INFO] ▶ Analyzing f6e470614171b9d8c33ecec979c50ee5b10b327959bd19ab91df3e9271d6add8
+2021/02/20 12:02:14 [INFO] ▶ Analyzing 618f451253e7c319bf341bfa8a264cfe7c78c0cd5493497ec282f6e904ec7a2a
+2021/02/20 12:02:14 [INFO] ▶ Analyzing a93eaa9b283d0562be1403cfcffa98ff54f4f3e05810aa8d5a5b66fee2f9834a
+2021/02/20 12:02:15 [INFO] ▶ Analyzing bd0b0e17ef9abf88ceb26d0e152fc29fa54ab9bce14b7cab5c9bb35ee381235f
+2021/02/20 12:02:15 [INFO] ▶ Analyzing 30def1a190887771e46e23f36c9d686c6343d919d21fe8e4b455d9a8976c54d9
+2021/02/20 12:02:15 [INFO] ▶ Analyzing 6529a2eb1a9394f6f0ce2f7d931c939da7d4179d3435a1b612fa6357645296e2
+2021/02/20 12:02:15 [INFO] ▶ Analyzing 1a3eb82b00b788e7062ca8c782461ca3d57ae97e44dd47bcc8e3e9059658c471
+2021/02/20 12:02:15 [INFO] ▶ Analyzing d9e75c1bc4eb93b01d6e5c15e27176247aeff35051e67d6460178575bc74eb50
+2021/02/20 12:02:15 [INFO] ▶ Analyzing d8c9c238579cd9c37a6a280b214bc39d56137c1606b19863d258106dce71b94f
+2021/02/20 12:02:15 [INFO] ▶ Analyzing cf2838666724bcfa5b6ffbae4ba4897d08045c64d3d9b63306136d9db04336e3
+2021/02/20 12:02:15 [INFO] ▶ Analyzing 51f1a8d03bff6b5b9afe81c48353be74a9680bc1a678df1879af989448c8dc50
+2021/02/20 12:02:15 [INFO] ▶ Image [docker.elastic.co/logstash/logstash-oss:7.11.1] contains NO unapproved vulnerabilities
 ```
 
 Security scanning using Trivy
 ```
-docker run --rm -v /var/run/docker.sock:/var/run/docker.sock:ro aquasec/trivy:0.11.0 --no-progress docker.elastic.co/logstash/logstash-oss:7.9.1
-2020-09-04T15:40:40.077Z        INFO    Need to update DB
-2020-09-04T15:40:40.077Z        INFO    Downloading DB...
-2020-09-04T15:40:55.780Z        INFO    Detecting RHEL/CentOS vulnerabilities...
-2020-09-04T15:40:55.813Z        INFO    Detecting ruby vulnerabilities...
+docker run --rm -v /var/run/docker.sock:/var/run/docker.sock:ro aquasec/trivy:0.16.0 --no-progress docker.elastic.co/logstash/logstash-oss:7.11.1
+2021-02-20T12:02:17.133Z        INFO    Need to update DB
+2021-02-20T12:02:17.133Z        INFO    Downloading DB...
+2021-02-20T12:02:34.207Z        INFO    Detecting RHEL/CentOS vulnerabilities...
+2021-02-20T12:02:34.247Z        INFO    Detecting  vulnerabilities...
 
-docker.elastic.co/logstash/logstash-oss:7.9.1 (centos 7.8.2003)
-===============================================================
-Total: 690 (UNKNOWN: 0, LOW: 388, MEDIUM: 295, HIGH: 7, CRITICAL: 0)
+docker.elastic.co/logstash/logstash-oss:7.11.1 (centos 7.9.2009)
+================================================================
+Total: 596 (UNKNOWN: 0, LOW: 357, MEDIUM: 235, HIGH: 4, CRITICAL: 0)
 
 usr/share/logstash/Gemfile.lock
 ===============================
-Total: 2 (UNKNOWN: 0, LOW: 0, MEDIUM: 1, HIGH: 1, CRITICAL: 0)
+Total: 3 (UNKNOWN: 0, LOW: 1, MEDIUM: 0, HIGH: 1, CRITICAL: 1)
 ```
